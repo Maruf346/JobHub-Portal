@@ -5,14 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Roboto', 'sans-serif'],
-      },
-      gridTemplateColumns: {
-        '70/30': '70% 30%',
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }
