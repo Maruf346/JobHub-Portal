@@ -8,7 +8,7 @@ const HomePage = () => {
     <>
       <Hero title="Welcome to JobHub" subtitle="Your one-stop solution for job hunting" />
       <HomeCards />
-      <JobListings />
+      <JobListings isHome={true} />
       <ViewAllJobs />
     </>
   )
