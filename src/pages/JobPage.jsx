@@ -1,10 +1,32 @@
-import { useParams, useLoaderData } from "react-router-dom";
+import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const JobPage = () => {
+const JobPage = ({ deleteJob }) => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const job = useLoaderData();
+
+    const handleDelete = async (jobId) => {
+        const confirm = window.confirm("Are you sure you want to delete this job?");
+        if (!confirm) return;
+
+        try {
+            // If deleteJob was passed from parent, use it; otherwise call API directly
+            const response = deleteJob ? await deleteJob(jobId) : await fetch(`/api/jobs/${jobId}`, { method: 'DELETE' });
+
+            if (!response || (response.ok === false && response.status !== 200 && response.status !== 204)) {
+                // deletion failed
+                alert('Failed to delete job. Please try again.');
+                return;
+            }
+
+            navigate('/jobs');
+        } catch (err) {
+            console.error('Delete failed', err);
+            alert('An error occurred while deleting.');
+        }
+    };
 
     return (
         <>
@@ -82,7 +104,7 @@ const JobPage = () => {
                                     to={`/jobs/edit/${job.id}`}
                                     className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                                 >Edit Job</Link>
-                                <button
+                                <button onClick={() => handleDelete(job.id)}
                                     className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                                 >
                                     Delete Job
