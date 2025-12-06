@@ -1,6 +1,7 @@
 import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const JobPage = ({ deleteJob }) => {
     const { id } = useParams();
@@ -20,11 +21,12 @@ const JobPage = ({ deleteJob }) => {
                 alert('Failed to delete job. Please try again.');
                 return;
             }
+            toast.success('Job deleted successfully!');
 
             navigate('/jobs');
         } catch (err) {
             console.error('Delete failed', err);
-            alert('An error occurred while deleting.');
+            toast.error('An error occurred while deleting.');
         }
     };
 
