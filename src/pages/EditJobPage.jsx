@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 const EditJobPage = ({ updateJobSubmit }) => {
@@ -18,7 +18,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
     
     const submitForm = (e) => {
         e.preventDefault();
-        const updateJob = {
+        const updatedJob = {
             id: job.id,
             title,
             type,
@@ -32,7 +32,7 @@ const EditJobPage = ({ updateJobSubmit }) => {
                 contactPhone,
             },
         };
-        updateJobSubmit(updateJob);
+        updateJobSubmit(updatedJob);
 
         toast.success('Job updated successfully!');
 
