@@ -1,6 +1,6 @@
 # JobHub Portal
 
-JobHub Portal is a modern and simple job-search web application built using **React**.  
+JobHub Portal is a modern and simple job-search web application built using **React.js**.  
 It allows users to browse job listings, read detailed job descriptions, and apply easily.  
 The UI is clean, responsive, and designed to make job discovery smooth and user-friendly.
 
